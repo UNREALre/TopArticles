@@ -77,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'top_news.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
