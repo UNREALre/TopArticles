@@ -4,6 +4,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 from .models import UserSource
+from top_news.helpers import AESCipher
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,3 +34,16 @@ class UserSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserSource
         fields = ('id', 'user_id', 'source_id', 'login', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def update(self, instance, validated_data):
+        password = validated_data.get('password', None)
+        if password is not None:
+            validated_data['password'] = AESCipher(password, self.context['request'].user.password).encrypt()
+        return super().update(instance, validated_data)
+
+    def create(self, validated_data):
+        password = validated_data.get('password', None)
+        if password is not None:
+            validated_data['password'] = AESCipher(password, self.context['request'].user.password).encrypt()
+        return super().create(validated_data)
