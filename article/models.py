@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Sources(models.Model):
+class Source(models.Model):
     name = models.CharField(max_length=255)
     feed_url = models.CharField(max_length=255)
 
