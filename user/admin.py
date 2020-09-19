@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import UserSource
+
+
+class UserSourceAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(UserSource, UserSourceAdmin)

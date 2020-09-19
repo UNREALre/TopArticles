@@ -9,3 +9,6 @@ class UserSource(models.Model):
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
     login = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+
+    def __str__(self):
+        return 'Source "{}" for user "{}"'.format(self.source.name, self.user.username)

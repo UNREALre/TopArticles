@@ -3,6 +3,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
+from .models import UserSource
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +27,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class UserSourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSource
+        fields = ('id', 'user_id', 'source_id', 'login', 'password')
