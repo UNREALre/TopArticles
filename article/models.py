@@ -8,5 +8,8 @@ class Source(models.Model):
     def __repr__(self):
         return '<Source {}>'.format(self.name)
 
+    def __str__(self):
+        return 'Source "{}"'.format(self.name)
+
     def get_info(self):
         return 'Source {} with the feed URL {}'.format(self.name, self.feed_url)
