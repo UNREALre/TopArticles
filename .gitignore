@@ -1,3 +1,5 @@
 /.idea/
 /venv/
 /logs/main.log
+/top_parser/geckodriver.log
+/top_parser/tmp/

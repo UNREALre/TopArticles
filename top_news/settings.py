@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Local Apps
     'user',
     'article',
+    'top_parser',
 ]
 
 REST_FRAMEWORK = {
