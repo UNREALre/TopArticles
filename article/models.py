@@ -21,7 +21,6 @@ class Article(models.Model):
     url = models.CharField(max_length=255)
     header = models.CharField(max_length=255)
     text = models.TextField()
-    date = models.DateTimeField()
     added = models.DateTimeField(auto_now_add=True)
     users = models.ManyToManyField(User, related_name='articles')
 
