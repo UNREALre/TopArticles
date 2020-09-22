@@ -295,19 +295,22 @@ class VcParserBuilder:
 
         driver = webdriver.Firefox(profile)
 
-        url = "https://vc.ru/"
-        driver.get(url)
-        driver.find_element_by_class_name('site-header-user-login__label').click()
-        auth_buttons = driver.find_elements_by_class_name('social-auth__button')
-        for button in auth_buttons:
-            if button.get_attribute('air-click') == 'auth_goto_tab':
-                button.click()
-                break
-        driver.find_element_by_name('login').send_keys(login)
-        sleep(.5)
-        driver.find_element_by_name('password').send_keys(password)
-        sleep(1)
-        driver.find_element_by_name('password').send_keys(Keys.ENTER)
+        try:
+            url = "https://vc.ru/"
+            driver.get(url)
+            driver.find_element_by_class_name('site-header-user-login__label').click()
+            auth_buttons = driver.find_elements_by_class_name('social-auth__button')
+            for button in auth_buttons:
+                if button.get_attribute('air-click') == 'auth_goto_tab':
+                    button.click()
+                    break
+            driver.find_element_by_name('login').send_keys(login)
+            sleep(.5)
+            driver.find_element_by_name('password').send_keys(password)
+            sleep(1)
+            driver.find_element_by_name('password').send_keys(Keys.ENTER)
+        except Exception as ex:
+            logger.error('Error during auth process VC.RU: {}'.format(ex))
 
         return driver
 

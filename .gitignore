@@ -3,3 +3,4 @@
 /logs/main.log
 /top_parser/geckodriver.log
 /top_parser/tmp/
+/geckodriver.log

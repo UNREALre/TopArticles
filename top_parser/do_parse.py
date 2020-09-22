@@ -20,16 +20,16 @@ def start_process():
             'password': AESCipher(user_source.password, user_source.user.password).decrypt()
         }
 
-        parser = top_parser.factory.create(user_source.label, **auth_data)
+        parser = top_parser.factory.create(user_source.source.label, **auth_data)
         if parser and parser.test_connection():
             logger.info('Successfully connected to source {} for user {}'.format(
-                user_source.label, user_source.user.username))
+                user_source.source.label, user_source.user.username))
 
             articles = parser.do_parse(user_source.source.feed_url)
             save_to_db(articles, user_source)
         else:
             logger.error('Can\'t connect to source {} for user {}!'.format(
-                user_source.label, user_source.user.username))
+                user_source.source.label, user_source.user.username))
 
 
 def save_to_db(articles, user_source):

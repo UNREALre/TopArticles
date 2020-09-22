@@ -33,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserSource
-        fields = ('id', 'user_id', 'source_id', 'login', 'password', 'label')
+        fields = ('id', 'user_id', 'source_id', 'login', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def update(self, instance, validated_data):

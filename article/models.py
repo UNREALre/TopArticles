@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Source(models.Model):
     name = models.CharField(max_length=255)
     feed_url = models.CharField(max_length=255)
+    label = models.CharField(max_length=50)  # used within parser factories
 
     def __repr__(self):
         return '<Source {}>'.format(self.name)

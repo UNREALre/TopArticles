@@ -5,7 +5,7 @@ from .models import Source, Article
 class SourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Source
-        fields = ('id', 'name', 'feed_url')
+        fields = ('id', 'name', 'feed_url', 'label')
 
 
 class ArticleSerializer(serializers.ModelSerializer):
