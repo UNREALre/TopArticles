@@ -24,9 +24,13 @@ class UserUpdate(UpdateAPIView):
 
 
 class UserSourceViewSet(viewsets.ModelViewSet):
-    queryset = UserSource.objects.all()
     serializer_class = UserSourceSerializer
     permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        """Restricting queryset to contain only user related sources"""
+
+        return UserSource.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         source = get_object_or_404(Source, id=self.request.data.get('source_id'))
