@@ -20,6 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', include('user.urls')),
     path('api/articles/', include('article.urls')),
-    # TODO: remove parser/ path right after celery implementation for scheduled task
-    path('parser/', include('top_parser.urls')) # for testing purposes only, before scheduled
 ]
