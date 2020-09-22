@@ -1,6 +1,7 @@
 from rest_framework.generics import (ListAPIView, CreateAPIView,
                                      RetrieveUpdateDestroyAPIView, get_object_or_404)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets, permissions
 
 from .models import Source, Article
@@ -60,12 +61,17 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
     serializer_class = ArticleSerializer
     permission_classes = (ArticlePermission, )
+    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         """Restricting queryset to contain only user related articles"""
 
         user = self.request.user
         return user.articles.all()
+
+    def filter_queryset(self, queryset):
+        queryset = super(ArticleViewSet, self).filter_queryset(queryset)
+        return queryset.order_by('-added')
 
     def list(self, request, *args, **kwargs):
         """Specifying special serializer for the list action"""

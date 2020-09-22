@@ -14,12 +14,14 @@ class AESCipher:
     """
     Class for encryption and decryption user credentials to third party services.
 
+    Use user password as key.
+
     Basic usage:
     AESCipher("data to encrypt","key to use").encrypt()
     AESCipher("encrypted data","key to use").decrypt()
     """
 
-    def __init__(self,data,key):
+    def __init__(self, data, key):
         self.block_size = 16
         self.data = data
         self.key = sha256(key.encode()).digest()[:32]
@@ -29,11 +31,11 @@ class AESCipher:
     def encrypt(self):
         plain_text = self.pad(self.data)
         iv = Random().read(AES.block_size)
-        cipher = AES.new(self.key,AES.MODE_OFB,iv)
+        cipher = AES.new(self.key, AES.MODE_OFB, iv)
         return b64encode(iv + cipher.encrypt(plain_text.encode())).decode()
 
     def decrypt(self):
         cipher_text = b64decode(self.data.encode())
         iv = cipher_text[:self.block_size]
-        cipher = AES.new(self.key,AES.MODE_OFB,iv)
+        cipher = AES.new(self.key, AES.MODE_OFB, iv)
         return self.unpad(cipher.decrypt(cipher_text[self.block_size:])).decode()

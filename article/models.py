@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -27,7 +28,8 @@ class Article(models.Model):
 
     @property
     def short_description(self):
-        return self.text[:700]
+        clean_text = re.sub('[^A-Za-zа-яА-Я0-9 ]+', '', self.text)
+        return clean_text[:700]
 
     def __str__(self):
         return self.header
