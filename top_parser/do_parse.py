@@ -1,5 +1,15 @@
+# -*- coding: utf-8 -*-
 """
 Main parsing process goes here.
+
+Module defines two base methods: start_process() and save_to_db()
+
+start_process() method walks through every user source in the system and fires appropriate feed parsers. At the end,
+method gets the list of parsed articles. This list passes to save_to_db() method.
+
+save_to_db() method receives parsed articles, walks through every article and check if article exists in DB?
+If article exists, method just ensures that article is linked with subscribed user.
+If there is no such article, method will add it to DB.
 """
 
 import logging
@@ -13,6 +23,8 @@ logger = logging.getLogger('django')
 
 
 def start_process():
+    """Fires parsing process."""
+
     user_sources = UserSource.objects.all()
     for user_source in user_sources:
         auth_data = {

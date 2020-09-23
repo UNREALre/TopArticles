@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+This module contains all urls routes of the app.
+"""
+
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token

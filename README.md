@@ -26,3 +26,4 @@ This is a list of functions that have to be implemented into project in near fut
 
 2. Use Celery instead of CRON task command. 
 
+3. Add functionality to parser, that removes missing articles from feed. If there is no article in the source feed, we need to exclude user link (foreign key) to this article in our DB, to prevent sending it to him.

@@ -1,8 +1,7 @@
+# -*- coding: utf-8 -*-
 """
 Helper functions that is used within project applications
 """
-
-# -*- coding: utf-8 -*-
 
 from Crypto.Cipher import AES
 from Crypto.Random import new as Random

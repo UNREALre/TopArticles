@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Implementation of Object Factory for Parsers and so on.
 """

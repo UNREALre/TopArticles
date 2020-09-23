@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 All service parsers implemented in this module. Parser registration goes here too.
 
@@ -6,7 +7,6 @@ Finally, we will need to register our newly created Parser within our Factory an
 """
 
 import requests
-import pickle
 import logging
 import os
 import concurrent.futures
@@ -194,8 +194,7 @@ class VcParser:
         return auth_flag
 
     def do_parse(self, url):
-        articles = list()
-
+        """Starts parsing process"""
         sleep(1)
 
         height = self.driver.execute_script("return document.body.scrollHeight")
@@ -204,7 +203,7 @@ class VcParser:
             body = self.driver.find_element_by_tag_name('body')
             body.send_keys(Keys.END)
 
-            sleep(2)
+            sleep(3)  # wait till new articles will be loaded via AJAX
 
             current_height = self.driver.execute_script("return document.body.scrollHeight")
             if current_height != height:
@@ -225,10 +224,12 @@ class VcParser:
         return page_articles
 
     def parse_article(self, article):
+        """Receives article preview. Return dict with fill article info, or with existed article in db."""
+
         parsed_article = dict()
 
         author = article.find('div', {'class': 'content-header-author__name'})
-        if author and author.get_text().strip() != "Промо":
+        if author and author.get_text().strip() != "Промо":  # we don't want promo blocks to get parsed
             h2 = article.find('h2')
             full_link = article.find('a', {'class': 'content-feed__link'})
             href = full_link['href'] if full_link else ''

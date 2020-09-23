@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+This module contains all views for the article app.
+"""
+
 from rest_framework.generics import (ListAPIView, CreateAPIView,
                                      RetrieveUpdateDestroyAPIView, get_object_or_404)
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser

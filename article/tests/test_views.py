@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+This module contains examples of how API methods can be tested inside Django.
+
+For now, all tests are created within Postman collection (reed README.md for actual Postman collection URL).
+"""
+
 from rest_framework import status
 from rest_framework.test import APIClient
 from django.test import TestCase, Client
@@ -39,10 +46,6 @@ class GetSingleSourceTest(TestCase):
         self.src3 = Source.objects.create(name='Source3', feed_url='https://site3.com')
 
     def test_get_valid_single_source(self):
-        # self.client.force_login(user=self.user)
-        # response = self.client.get(
-        #    reverse('article:source_view_update_delete', kwargs={'pk': self.src1.pk}),
-        #    HTTP_AUTHORIZATION=self.token)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         response = self.client.get(reverse('article:source_view_update_delete', kwargs={'pk': self.src1.pk}))
         source = Source.objects.get(pk=self.src1.pk)
