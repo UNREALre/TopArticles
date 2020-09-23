@@ -1,4 +1,4 @@
-#Middle Python developer test task @ CASHOFF
+# Middle Python developer test task @ CASHOFF
 
 ## Installation info
 Upload project files to your server.
@@ -15,15 +15,15 @@ Ensure that folder /logs have required rights (write) for system logging.
 All available APIs described within Postman collection, you can find the link below. Also, you can open collection using your desktop client and use basic auto tests for every API request to figure out if everything works fine.
 https://documenter.getpostman.com/view/2849238/TVKEVGMV
 
-####CRON
+#### CRON
 To run parsing process in schedule use crontab on your server. You will need the command below for your cron task:
 >python manager.py run
 
 This cron task will run parser every day in 1:00 AM:
 >0 1 * * * python manager.py run
 
-##Management
-Use built in admin panel to manage information. You can get access to it using URL: 
+## Management
+Use built in admin panel to manage information. You can get access to it using URL: http://127.0.0.1:8000/admin/ 
 
 Example of managing user sources: https://yadi.sk/i/ejJIfbxavbRweg
 
