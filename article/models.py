@@ -33,3 +33,8 @@ class Article(models.Model):
 
     def __str__(self):
         return self.header
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['url', ])
+        ]
